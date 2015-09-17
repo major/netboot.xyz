@@ -18,6 +18,7 @@ item opensuse ${space} openSUSE
 item rancheros ${space} RancherOS
 item scientific ${space} Scientific
 item slackware ${space} Slackware
+item steamos ${space} SteamOS
 item ubuntu ${space} Ubuntu
 item tinycore ${space} TinyCoreLinux
 # Options
@@ -72,4 +73,8 @@ goto linux_menu
 
 :slackware
 chain slackware.ipxe
+goto linux_menu
+
+:steamos
+chain steamos.ipxe
 goto linux_menu
