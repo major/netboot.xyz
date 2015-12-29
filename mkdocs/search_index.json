@@ -1,0 +1,54 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "netboot.xyz \n \n\n\n\n\nBootloader Downloads\n\n\nThese are pregenerated iPXE disks that will automatically load \nboot.netboot.xyz\n.\n\n\n\n\nISO: \ndhcp\n | \nstatic\n\n\nUSB: \ndhcp\n | \nstatic\n\n\nKernel: \ndhcp\n | \nstatic\n\n\nChecksums: \nSHA256\n\n\n\n\nWhat is netboot.xyz?\n\n\nnetboot.xyz\n is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.  iPXE is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.\n\n\nYou can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.\n\n\nGetting started\n\n\nDownload the bootloader of your choice from the links above and add it to your favorite virtualization tool to start testing out netboot.xyz.  These are precompiled versions of the latest version of \niPXE\n that will chainload you to \nhttp://boot.netboot.xyz\n.  There are two versions of each, one if you have DHCP on your network, and one if you have to set a static IP before connecting outside of your network.\n\n\nIf you already have iPXE up and running on the network, you can hit netboot.xyz at anytime by typing:\n\n\nchain --autofree http://boot.netboot.xyz\n\n\n\nOperating Systems\n\n\nWhat Operating Systems are currently available on netboot.xyz?\n\n\n\n\nArchLinux\n\n\nCentOS\n\n\nCoreOS\n\n\nDebian\n\n\nFedora\n\n\nFreeBSD\n\n\nGentoo\n\n\nKali\n\n\nOpenBSD\n\n\nOpenSUSE\n\n\nRancherOS\n\n\nScientific\n\n\nTinyCoreLinux\n\n\nUbuntu\n\n\nWinPE\n\n\n\n\nUtilities\n\n\n\n\nClonezilla\n\n\nGParted\n\n\nHDT\n\n\nMemtest\n\n\nPartition Wizard\n\n\n\n\nSource Code\n\n\nThe source code for netboot.xyz is located \nhere\n.\n\n\nContributing\n\n\nNew version of an OS out?  Found a new OS that works well with iPXE?  Pull requests are welcomed and encouraged and helps me out a ton!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master, \nTravis CI\n will regenerate new versions of \niPXE from upstream\n and deploy the latest changes to netboot.xyz.\n\n\nTesting New Branches\n\n\nUnder the Utilities menu on netboot.xyz, there's an option for \n\"Test netboot.xyz branch\"\n.  If you've forked the code and have developed a new feature branch, you can use this option to chainload into that branch to test and validate the code.  All you need to do is specify your github user name and the name of your branch or abbreviated hash of the commit.\n\n\nFeedback\n\n\nFeel free to open up an issue on github or contact me at \n.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#netbootxyz", 
+            "text": "Bootloader Downloads  These are pregenerated iPXE disks that will automatically load  boot.netboot.xyz .   ISO:  dhcp  |  static  USB:  dhcp  |  static  Kernel:  dhcp  |  static  Checksums:  SHA256   What is netboot.xyz?  netboot.xyz  is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.  iPXE is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.  You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.  Getting started  Download the bootloader of your choice from the links above and add it to your favorite virtualization tool to start testing out netboot.xyz.  These are precompiled versions of the latest version of  iPXE  that will chainload you to  http://boot.netboot.xyz .  There are two versions of each, one if you have DHCP on your network, and one if you have to set a static IP before connecting outside of your network.  If you already have iPXE up and running on the network, you can hit netboot.xyz at anytime by typing:  chain --autofree http://boot.netboot.xyz  Operating Systems  What Operating Systems are currently available on netboot.xyz?   ArchLinux  CentOS  CoreOS  Debian  Fedora  FreeBSD  Gentoo  Kali  OpenBSD  OpenSUSE  RancherOS  Scientific  TinyCoreLinux  Ubuntu  WinPE   Utilities   Clonezilla  GParted  HDT  Memtest  Partition Wizard   Source Code  The source code for netboot.xyz is located  here .  Contributing  New version of an OS out?  Found a new OS that works well with iPXE?  Pull requests are welcomed and encouraged and helps me out a ton!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master,  Travis CI  will regenerate new versions of  iPXE from upstream  and deploy the latest changes to netboot.xyz.  Testing New Branches  Under the Utilities menu on netboot.xyz, there's an option for  \"Test netboot.xyz branch\" .  If you've forked the code and have developed a new feature branch, you can use this option to chainload into that branch to test and validate the code.  All you need to do is specify your github user name and the name of your branch or abbreviated hash of the commit.  Feedback  Feel free to open up an issue on github or contact me at  .", 
+            "title": "netboot.xyz"
+        }, 
+        {
+            "location": "/boot_loaders/", 
+            "text": "Boot as iPXE Linux Kernel\n\n\nThe ipxe.lkrn file can be booted as a Linux kernel from the bootloader.  This can be useful for providing a diagnostic tool as part of the OS or even having a quick option to reprovision the server on the fly.\n\n\nExtlinux\n\n\nEdit /boot/extlinux.conf and add a simple entry:\n\n\nLABEL ipxe-boot\n      kernel /boot/ipxe.lkrn\n      initrd /boot/ipxe-config.ipxe\n\n\n\nThe kernel is treated as a Linux kernel and the initrd is treated as the iPXE script that is run once the kernel has loaded.\n\n\nGrub", 
+            "title": "Extlinux/Grub"
+        }, 
+        {
+            "location": "/boot_ipxe/", 
+            "text": "iPXE\n\n\nNIC with Embedded iPXE\n\n\nIf you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:\n\n\ndhcp\nchain http://boot.netboot.xyz/menu.ipxe\n\n\n\nIf you don't have DHCP on your network, you can manually set your network information:\n\n\nset net0/ip \nip\n\nset net0/netmask \nnetmask\n\nset net0/gateway \ngateway\n\nset dns \nnameserver\n\nifopen net0\nchain http://boot.netboot.xyz/menu.ipxe", 
+            "title": "iPXE"
+        }, 
+        {
+            "location": "/boot_iso/", 
+            "text": "Booting from ISO\n\n\nTo create a bootable CD-ROM, burn the ISO image ipxe.iso (~1MB in size) to a blank CD-ROM.  You can also use this ISO file as a virtual CD device in Citrix XenServer, VMware ESXi, VMware Fusion, VirtualBox, or even in a Dell DRAC or HP iLOs virtual CD drive.", 
+            "title": "ISO"
+        }, 
+        {
+            "location": "/boot_usb/", 
+            "text": "Boot from iPXE USB\n\n\nWarning: Backup your important data before using USB as it will overwrite anything on the USB key.\n\n\nDownload a netboot.xyz disk:\n\n\n\n\ndhcp\n - Automatically detects your networking\n\n\nstatic\n - Prompts for manual entry of your networking information\n\n\n\n\nInsert a USB key in your compute and find the device name. Then use following command:\n\n\ncat ipxe.usb \n /dev/sdX\n\n\n\nor\n\n\ndd if=ipxe.usb of=/dev/sdX\n\n\n\nwhere sdX is your usb drive.\n\n\nReboot and set your BIOS to load the USB key first if it's not set for that already.  You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.", 
+            "title": "USB"
+        }, 
+        {
+            "location": "/boot_vbox/", 
+            "text": "VirtualBox\n\n\nTBA", 
+            "title": "Virtual Box"
+        }, 
+        {
+            "location": "/boot_vmware/", 
+            "text": "VMware\n\n\nTBA", 
+            "title": "VMware"
+        }, 
+        {
+            "location": "/usage_digitalocean/", 
+            "text": "Digital Ocean\n\n\nDigital Ocean\n at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.\n\n\niPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.\n\n\nTests were done using a Fedora 23 instance on Digital Ocean.\n\n\nBooting from Grub2\n\n\nDownload an iPXE linux kernel\n\n\nObtain an iPXE generic kernel \nhere\n or \ncompile your own\n and save it to /boot/generic-ipxe.lkrn.\n\n\nCreate a netboot.xyz initrd file\n\n\nThe netboot.xyz initrd file contains the script necessary to bring the instance on the network and reach out to netboot.xyz.\n\n\nSave as /boot/netboot.xyz-initrd (replace your networking information where appropriate):\n\n\n#!ipxe\n#/boot/netboot.xyz-initrd\nimgfree\nset net0/ip \ninstance public ip\n\nset net0/netmask \ninstance public netmask\n\nset net0/gateway \ninstance public gateway\n\nset dns \ninstance dns address\n\nifopen net0\nchain --autofree http://boot.netboot.xyz\n\n\n\nAdd a Grub2 custom entry\n\n\nAdd the following entry to /etc/grub.d/40_custom:\n\n\n#/etc/grub.d/40_custom\nmenuentry 'netboot.xyz' {\n    set root='hd0,msdos1'\n    linux16 /boot/generic-ipxe.lkrn\n    initrd16 /boot/netboot.xyz-initrd\n}\n\n\n\nRegenerate your grub config\n\n\nRun grub2-mkconfig right after editing the configuration to add the netboot.xyz entry to your grub menu:\n\n\ngrub2-mkconfig -o /boot/grub2/grub.cfg\n\n\n\nLoad up a console and then reboot from the instance to catch the menu option.  You can also change the default boot to netboot.xyz or increase the timeout if you want to be able to catch it easier.", 
+            "title": "Digital Ocean"
+        }, 
+        {
+            "location": "/usage_rackspace/", 
+            "text": "Rackspace\n\n\nSee \nboot.rackspace.com\n for now.  You can chain to netboot.xyz from there:\n\n\nchain --autofree http://boot.netboot.xyz", 
+            "title": "Rackspace"
+        }
+    ]
+}
