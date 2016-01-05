@@ -11,11 +11,6 @@
             "title": "netboot.xyz"
         }, 
         {
-            "location": "/boot_loaders/", 
-            "text": "Boot as iPXE Linux Kernel\n\n\nThe ipxe.lkrn file can be booted as a Linux kernel from the bootloader.  This can be useful for providing a diagnostic tool as part of the OS or even having a quick option to reprovision the server on the fly.\n\n\nExtlinux\n\n\nEdit /boot/extlinux.conf and add a simple entry:\n\n\nLABEL ipxe-boot\n      kernel /boot/ipxe.lkrn\n      initrd /boot/ipxe-config.ipxe\n\n\n\nThe kernel is treated as a Linux kernel and the initrd is treated as the iPXE script that is run once the kernel has loaded.\n\n\nGrub", 
-            "title": "Extlinux/Grub"
-        }, 
-        {
             "location": "/boot_ipxe/", 
             "text": "iPXE\n\n\nNIC with Embedded iPXE\n\n\nIf you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:\n\n\ndhcp\nchain --autofree http://boot.netboot.xyz\n\n\n\nIf you don't have DHCP on your network, you can manually set your network information:\n\n\nset net0/ip \nip\n\nset net0/netmask \nnetmask\n\nset net0/gateway \ngateway\n\nset dns \nnameserver\n\nifopen net0\nchain --autofree http://boot.netboot.xyz", 
             "title": "iPXE"

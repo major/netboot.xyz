@@ -12,12 +12,6 @@
     
         
     <url>
-     <loc>http://netboot.xyz/boot_loaders/</loc>
-     <lastmod>2016-01-05</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>http://netboot.xyz/boot_ipxe/</loc>
      <lastmod>2016-01-05</lastmod>
      <changefreq>daily</changefreq>
