@@ -152,7 +152,7 @@
 <h4 id="nic-with-embedded-ipxe">NIC with Embedded iPXE</h4>
 <p>If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:</p>
 <pre><code>dhcp
-chain http://boot.netboot.xyz/menu.ipxe
+chain --autofree http://boot.netboot.xyz
 </code></pre>
 <p>If you don't have DHCP on your network, you can manually set your network information:</p>
 <pre><code>set net0/ip &lt;ip&gt;
@@ -160,7 +160,7 @@ set net0/netmask &lt;netmask&gt;
 set net0/gateway &lt;gateway&gt;
 set dns &lt;nameserver&gt;
 ifopen net0
-chain http://boot.netboot.xyz/menu.ipxe
+chain --autofree http://boot.netboot.xyz
 </code></pre></div>
         </div>
 

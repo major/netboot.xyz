@@ -139,20 +139,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#boot-from-ipxe-usb">Boot from iPXE USB</a></li>
+        <li class="main active"><a href="#booting-from-a-usb-key">Booting from a USB Key</a></li>
+        
+    
+        <li class="main "><a href="#creating-usb-key-on-linux">Creating USB Key on Linux</a></li>
+        
+    
+        <li class="main "><a href="#creating-usb-key-on-os-x">Creating USB Key on OS X</a></li>
+        
+    
+        <li class="main "><a href="#creating-usb-key-on-windows">Creating USB Key on Windows</a></li>
+        
+    
+        <li class="main "><a href="#booting">Booting</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="boot-from-ipxe-usb">Boot from iPXE USB</h3>
+<h3 id="booting-from-a-usb-key">Booting from a USB Key</h3>
 <p><em>Warning: Backup your important data before using USB as it will overwrite anything on the USB key.</em></p>
-<p>Download a netboot.xyz disk:</p>
+<p>Download a netboot.xyz USB disk:</p>
 <ul>
 <li><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> - Automatically detects your networking</li>
 <li><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a> - Prompts for manual entry of your networking information</li>
 </ul>
+<h3 id="creating-usb-key-on-linux">Creating USB Key on Linux</h3>
 <p>Insert a USB key in your compute and find the device name. Then use following command:</p>
 <pre><code>cat ipxe.usb &gt; /dev/sdX
 </code></pre>
@@ -160,7 +173,37 @@
 <pre><code>dd if=ipxe.usb of=/dev/sdX
 </code></pre>
 <p>where sdX is your usb drive.</p>
-<p>Reboot and set your BIOS to load the USB key first if it's not set for that already.  You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.</p></div>
+<p>The USB key should be ready to eject once finished.</p>
+<h3 id="creating-usb-key-on-os-x">Creating USB Key on OS X</h3>
+<p><strong>Run:</strong></p>
+<pre><code>diskutil list
+</code></pre>
+<p>to get the current list of devices</p>
+<p><strong><em>Insert the flash media.</em></strong></p>
+<p><strong>Run:</strong></p>
+<pre><code>diskutil list
+</code></pre>
+<p>again and determine the device node assigned to your flash media (e.g. /dev/disk2).</p>
+<p><strong>Run:</strong></p>
+<pre><code>diskutil unmountDisk /dev/diskN
+</code></pre>
+<p>(replace N with the disk number from the last command; in the previous example, N would be 2).</p>
+<p><strong>Execute:</strong></p>
+<pre><code>sudo dd if=netboot.xyz-dhcp.usb of=/dev/rdiskN bs=1m
+</code></pre>
+<ul>
+<li>Using /dev/rdisk instead of /dev/disk may be faster</li>
+<li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M</li>
+<li>If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive</li>
+</ul>
+<p><strong>Run:</strong></p>
+<pre><code>diskutil eject /dev/diskN
+</code></pre>
+<p>and remove your flash media when the command completes.</p>
+<h3 id="creating-usb-key-on-windows">Creating USB Key on Windows</h3>
+<p>Check out <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/">Universal USB Installer</a> to install the ISO file to a USB key.</p>
+<h3 id="booting">Booting</h3>
+<p>Once you've created your key, reboot and set your BIOS to load the USB key first if it's not set for that already. You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.</p></div>
         </div>
 
         <footer class="col-md-12">
