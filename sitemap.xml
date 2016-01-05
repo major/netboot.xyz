@@ -35,18 +35,6 @@
      <changefreq>daily</changefreq>
     </url>
         
-    <url>
-     <loc>http://netboot.xyz/boot_vbox/</loc>
-     <lastmod>2016-01-05</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://netboot.xyz/boot_vmware/</loc>
-     <lastmod>2016-01-05</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
     
 
     
