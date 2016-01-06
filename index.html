@@ -154,13 +154,14 @@
 <p><a href="https://travis-ci.org/antonym/netboot.xyz"><img alt="Build Status" src="https://travis-ci.org/antonym/netboot.xyz.svg?branch=master" /></a> <a href="https://gitter.im/antonym/netboot.xyz?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img alt="Join the chat at https://gitter.im/antonym/netboot.xyz" src="https://badges.gitter.im/Join%20Chat.svg" /></a></p>
 <p><img alt="netboot.xyz menu" src="./img/netboot.xyz.gif" /></p>
 <h3 id="bootloader-downloads">Bootloader Downloads</h3>
-<p>These are pregenerated iPXE disks that will automatically load <a href="http://boot.netboot.xyz">boot.netboot.xyz</a>.</p>
+<p>These iPXE disks will automatically load into <a href="http://boot.netboot.xyz">boot.netboot.xyz</a>:</p>
 <ul>
 <li>ISO: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.iso">static</a></li>
 <li>USB: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a></li>
 <li>Kernel: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.lkrn">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.lkrn">static</a></li>
 <li>Checksums: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt">SHA256</a></li>
 </ul>
+<p>You can view the embedded scripts <a href="https://github.com/antonym/netboot.xyz/tree/master/ipxe/disks">here</a>.</p>
 <h3 id="what-is-netbootxyz">What is netboot.xyz?</h3>
 <p><a href="http://www.netboot.xyz">netboot.xyz</a> is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.  <a href="http://ipxe.org/">iPXE</a> is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.</p>
 <p>You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.</p>
