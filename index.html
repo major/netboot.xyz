@@ -156,12 +156,13 @@
 <h3 id="bootloader-downloads">Bootloader Downloads</h3>
 <p>These iPXE disks will automatically load into <a href="http://boot.netboot.xyz">boot.netboot.xyz</a>:</p>
 <ul>
-<li>ISO: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.iso">static</a></li>
-<li>USB: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a></li>
-<li>Kernel: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.lkrn">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.lkrn">static</a></li>
-<li>Checksums: <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt">SHA256</a></li>
+<li>ISO [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.iso">static</a> ] - Typically used for CD/DVD, Virtual CDs like DRAC/iLO, VMware, Virtual Box</li>
+<li>USB [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a> ] - Used for creation of USB Keys</li>
+<li>Kernel [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.lkrn">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.lkrn">static</a> ] - Used for GRUB/EXTLINUX</li>
+<li>DHCP [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.kpxe">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp-undionly.kpxe">dhcp-undionly</a> ] - Used for a DHCP boot image file, use undionly if you have NIC issues</li>
+<li>Checksums [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt">SHA256</a> ] - Checksums are generated during iPXE compile on Travis CI</li>
 </ul>
-<p>You can view the embedded scripts <a href="https://github.com/antonym/netboot.xyz/tree/master/ipxe/disks">here</a>.</p>
+<p>You can view the scripts that are embedded into the images <a href="https://github.com/antonym/netboot.xyz/tree/master/ipxe/disks">here</a>.</p>
 <h3 id="what-is-netbootxyz">What is netboot.xyz?</h3>
 <p><a href="http://www.netboot.xyz">netboot.xyz</a> is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.  <a href="http://ipxe.org/">iPXE</a> is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.</p>
 <p>You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.</p>
