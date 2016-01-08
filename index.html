@@ -155,14 +155,50 @@
 <p><img alt="netboot.xyz menu" src="./img/netboot.xyz.gif" /></p>
 <h3 id="bootloader-downloads">Bootloader Downloads</h3>
 <p>These iPXE disks will automatically load into <a href="http://boot.netboot.xyz">boot.netboot.xyz</a>:</p>
-<ul>
-<li>ISO [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.iso">static</a> ] - Typically used for CD/DVD, Virtual CDs like DRAC/iLO, VMware, Virtual Box</li>
-<li>USB [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a> ] - Used for creation of USB Keys</li>
-<li>Kernel [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.lkrn">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.lkrn">static</a> ] - Used for GRUB/EXTLINUX</li>
-<li>DHCP [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.kpxe">dhcp</a> | <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp-undionly.kpxe">dhcp-undionly</a> ] - Used for a DHCP boot image file, use undionly if you have NIC issues</li>
-<li>Checksums [ <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt">SHA256</a> ] - Checksums are generated during iPXE compile on Travis CI</li>
-</ul>
-<p>You can view the scripts that are embedded into the images <a href="https://github.com/antonym/netboot.xyz/tree/master/ipxe/disks">here</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>DHCP Bootloaders</th>
+<th>Static Bootloaders</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO</td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso">netboot.xyz-dhcp.iso</a></td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.iso">netboot.xyz-static.iso</a></td>
+<td>Used for CD/DVD, Virtual CDs like DRAC/iLO, VMware, Virtual Box</td>
+</tr>
+<tr>
+<td>USB</td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">netboot.xyz-dhcp.usb</a></td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">netboot.xyz-static.usb</a></td>
+<td>Used for creation of USB Keys</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.lkrn">netboot.xyz-dhcp.lkrn</a></td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.lkrn">netboot.xyz-static.lkrn</a></td>
+<td>Used for booting from GRUB/EXTLINUX</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.kpxe">netboot.xyz-dhcp.kpxe</a></td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.kpxe">netboot.xyz-static.kpxe</a></td>
+<td>DHCP boot image file, uses built-in iPXE NIC drivers</td>
+</tr>
+<tr>
+<td>DHCP-undionly</td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp-undionly.kpxe">netboot.xyz-dhcp-undionly.kpxe</a></td>
+<td><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static-undionly.kpxe">netboot.xyz-static-undionly.kpxe</a></td>
+<td>DHCP boot image file, use if you have NIC issues</td>
+</tr>
+</tbody>
+</table>
+<p>The DHCP bootloaders will automatically get a network address if you have DHCP on your network while the static bootloaders will prompt you for network information.  </p>
+<p>SHA256 checksums are generated during each build of iPXE and are located <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt">here</a>.  You can also view the scripts that are embedded into the images <a href="https://github.com/antonym/netboot.xyz/tree/master/ipxe/disks">here</a>.</p>
 <h3 id="what-is-netbootxyz">What is netboot.xyz?</h3>
 <p><a href="http://www.netboot.xyz">netboot.xyz</a> is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.  <a href="http://ipxe.org/">iPXE</a> is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.</p>
 <p>You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.</p>
