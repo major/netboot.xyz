@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/boot_ipxe/">
+        <link rel="canonical" href="http://netboot.xyz/boot_vbox/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>iPXE - netboot.xyz</title>
+	<title>Virtual Box - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -70,8 +70,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boot from... <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">iPXE</a>
+                        <li >
+                            <a href="../boot_loaders/">Extlinux/Grub</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../boot_ipxe/">iPXE</a>
                         </li>
                     
                         <li >
@@ -79,11 +83,15 @@
                         </li>
                     
                         <li >
-                            <a href="../boot_tftp/">TFTP</a>
+                            <a href="../boot_usb/">USB</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Virtual Box</a>
                         </li>
                     
                         <li >
-                            <a href="../boot_usb/">USB</a>
+                            <a href="../boot_vmware/">VMware</a>
                         </li>
                     
                     </ul>
@@ -112,12 +120,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="..">
+                    <a rel="next" href="../boot_usb/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../boot_iso/">
+                    <a rel="prev" href="../boot_vmware/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -131,29 +139,15 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#ipxe">iPXE</a></li>
-        
-            <li><a href="#nic-with-embedded-ipxe">NIC with Embedded iPXE</a></li>
+        <li class="main active"><a href="#virtualbox">VirtualBox</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="ipxe">iPXE</h3>
-<h4 id="nic-with-embedded-ipxe">NIC with Embedded iPXE</h4>
-<p>If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:</p>
-<pre><code>dhcp
-chain --autofree http://boot.netboot.xyz
-</code></pre>
-<p>If you don't have DHCP on your network, you can manually set your network information:</p>
-<pre><code>set net0/ip &lt;ip&gt;
-set net0/netmask &lt;netmask&gt;
-set net0/gateway &lt;gateway&gt;
-set dns &lt;nameserver&gt;
-ifopen net0
-chain --autofree http://boot.netboot.xyz
-</code></pre></div>
+<h3 id="virtualbox">VirtualBox</h3>
+<p>TBA</p></div>
         </div>
 
         <footer class="col-md-12">

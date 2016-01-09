@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/boot_ipxe/">
+        <link rel="canonical" href="http://netboot.xyz/boot_loaders/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>iPXE - netboot.xyz</title>
+	<title>Extlinux/Grub - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -71,7 +71,11 @@
                     <ul class="dropdown-menu">
                     
                         <li class="active">
-                            <a href="./">iPXE</a>
+                            <a href="./">Extlinux/Grub</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../boot_ipxe/">iPXE</a>
                         </li>
                     
                         <li >
@@ -79,11 +83,15 @@
                         </li>
                     
                         <li >
-                            <a href="../boot_tftp/">TFTP</a>
+                            <a href="../boot_usb/">USB</a>
                         </li>
                     
                         <li >
-                            <a href="../boot_usb/">USB</a>
+                            <a href="../boot_vbox/">Virtual Box</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../boot_vmware/">VMware</a>
                         </li>
                     
                     </ul>
@@ -117,7 +125,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../boot_iso/">
+                    <a rel="prev" href="../boot_ipxe/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -131,29 +139,27 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#ipxe">iPXE</a></li>
+        <li class="main active"><a href="#boot-as-ipxe-linux-kernel">Boot as iPXE Linux Kernel</a></li>
         
-            <li><a href="#nic-with-embedded-ipxe">NIC with Embedded iPXE</a></li>
+            <li><a href="#extlinux">Extlinux</a></li>
+        
+            <li><a href="#grub">Grub</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="ipxe">iPXE</h3>
-<h4 id="nic-with-embedded-ipxe">NIC with Embedded iPXE</h4>
-<p>If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:</p>
-<pre><code>dhcp
-chain --autofree http://boot.netboot.xyz
+<h3 id="boot-as-ipxe-linux-kernel">Boot as iPXE Linux Kernel</h3>
+<p>The ipxe.lkrn file can be booted as a Linux kernel from the bootloader.  This can be useful for providing a diagnostic tool as part of the OS or even having a quick option to reprovision the server on the fly.</p>
+<h4 id="extlinux">Extlinux</h4>
+<p>Edit /boot/extlinux.conf and add a simple entry:</p>
+<pre><code>LABEL ipxe-boot
+      kernel /boot/ipxe.lkrn
+      initrd /boot/ipxe-config.ipxe
 </code></pre>
-<p>If you don't have DHCP on your network, you can manually set your network information:</p>
-<pre><code>set net0/ip &lt;ip&gt;
-set net0/netmask &lt;netmask&gt;
-set net0/gateway &lt;gateway&gt;
-set dns &lt;nameserver&gt;
-ifopen net0
-chain --autofree http://boot.netboot.xyz
-</code></pre></div>
+<p>The kernel is treated as a Linux kernel and the initrd is treated as the iPXE script that is run once the kernel has loaded.</p>
+<h4 id="grub">Grub</h4></div>
         </div>
 
         <footer class="col-md-12">

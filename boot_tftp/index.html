@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/boot_ipxe/">
+        <link rel="canonical" href="http://netboot.xyz/boot_tftp/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>iPXE - netboot.xyz</title>
+	<title>TFTP - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -70,16 +70,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boot from... <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">iPXE</a>
+                        <li >
+                            <a href="../boot_ipxe/">iPXE</a>
                         </li>
                     
                         <li >
                             <a href="../boot_iso/">ISO</a>
                         </li>
                     
-                        <li >
-                            <a href="../boot_tftp/">TFTP</a>
+                        <li class="active">
+                            <a href="./">TFTP</a>
                         </li>
                     
                         <li >
@@ -112,12 +112,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="..">
+                    <a rel="next" href="../boot_iso/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../boot_iso/">
+                    <a rel="prev" href="../boot_usb/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -131,29 +131,36 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#ipxe">iPXE</a></li>
+        <li class="main active"><a href="#booting-from-dhcp-and-tftp">Booting from DHCP and TFTP</a></li>
         
-            <li><a href="#nic-with-embedded-ipxe">NIC with Embedded iPXE</a></li>
+            <li><a href="#dhcp-server-setup">DHCP Server Setup</a></li>
+        
+            <li><a href="#tftp-server-setup">TFTP Server Setup</a></li>
+        
+            <li><a href="#regular-and-undionly-boot-files">Regular and Undionly Boot Files</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="ipxe">iPXE</h3>
-<h4 id="nic-with-embedded-ipxe">NIC with Embedded iPXE</h4>
-<p>If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:</p>
-<pre><code>dhcp
-chain --autofree http://boot.netboot.xyz
+<h3 id="booting-from-dhcp-and-tftp">Booting from DHCP and TFTP</h3>
+<p>If you want to utilize netboot.xyz from your home or office network, it's relatively easy to set up.  It will allow all of your devices on your network to have netboot.xyz available whenever you need it by just changing the boot order on your device, selecting network boot, or manually selecting the device to boot.</p>
+<h4 id="dhcp-server-setup">DHCP Server Setup</h4>
+<p>You will have to tell your DHCP server to provide a "next-server", the address of a TFTP server on your network, and a "filename", the <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.kpxe">netboot.xyz DHCP boot file</a>.  When your clients boot up, if they are set to network boot, they'll automatically get a valid DHCP address, pull down the netboot.xyz iPXE bootloader and load up the Operating System menu.  </p>
+<p>Example:</p>
+<pre><code>next-server "1.2.3.4"
+filename "netboot.xyz-dhcp.kpxe"
 </code></pre>
-<p>If you don't have DHCP on your network, you can manually set your network information:</p>
-<pre><code>set net0/ip &lt;ip&gt;
-set net0/netmask &lt;netmask&gt;
-set net0/gateway &lt;gateway&gt;
-set dns &lt;nameserver&gt;
-ifopen net0
-chain --autofree http://boot.netboot.xyz
-</code></pre></div>
+<h4 id="tftp-server-setup">TFTP Server Setup</h4>
+<p>You will need to set up a tftp server to host the iPXE files.  There are various types of TFTP servers out there and they all usually work pretty well.  You can also use dnsmasq to host the files as well.</p>
+<p>If you use dnsmasq you can add this configuration to /etc/dnsmasq.conf:</p>
+<pre><code>enable-tftp
+tftp-root=/var/lib/tftp
+dhcp-boot=netboot.xyz-dhcp.kpxe
+</code></pre>
+<h4 id="regular-and-undionly-boot-files">Regular and Undionly Boot Files</h4>
+<p>If you experiencing issues with the regular <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.kpxe">netboot.xyz-dhcp.kpxe</a> bootloader, you can try and use the <a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp-undionly.kpxe">netboot.xyz-dhcp-undionly.kpxe</a> bootloader.  The regular bootloader includes common NIC drivers in the iPXE image, while the undionly loader will piggyback off the NIC boot firmware.</p></div>
         </div>
 
         <footer class="col-md-12">
