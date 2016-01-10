@@ -9,8 +9,7 @@ goto ${menu}
 set os steamos
 
 menu SteamOS ${arch_a}
-item brewmaster SteamOS brewmaster
-item alchemist SteamOS alchemist
+item brewmaster SteamOS brewmaster automated
 choose version || goto steamos_exit
 goto steamos_boot
 
@@ -20,6 +19,7 @@ set mirror repo.steampowered.com
 set dir steamos/dists/${version}/main/installer-amd64/current/images/netboot/debian-installer/amd64
 kernel http://${mirror}/${dir}/linux vga=788 
 initrd http://${mirror}/${dir}/initrd.gz
+imgargs linux netcfg/choose_interface=auto preseed/url=http://images.squashible.com/steamos-brewmaster.cfg DEBCONF_DEBUG=developer desktop=steamos auto=true priority=critical partman/confirm=true partman/choose_partition=finish vga=788 --- quiet 
 boot
 
 :steamos_exit
