@@ -4,7 +4,7 @@
     
     <url>
      <loc>http://netboot.xyz/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,25 +13,25 @@
         
     <url>
      <loc>http://netboot.xyz/boot_ipxe/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://netboot.xyz/boot_iso/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://netboot.xyz/boot_tftp/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://netboot.xyz/boot_usb/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -41,13 +41,13 @@
         
     <url>
      <loc>http://netboot.xyz/usage_digitalocean/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://netboot.xyz/usage_rackspace/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
