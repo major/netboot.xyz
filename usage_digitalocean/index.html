@@ -159,9 +159,9 @@
             <div class="col-md-9" role="main">
 
 <h3 id="digital-ocean">Digital Ocean</h3>
-<p><a href="https://www.digitalocean.com">Digital Ocean</a> at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.</p>
+<p><a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a> at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.</p>
 <p>iPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.</p>
-<p>Tests were done using a Fedora 23 instance on Digital Ocean.</p>
+<p>Tests were done using a <a href="https://getfedora.org">Fedora 23</a> instance on <a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a>.</p>
 <h3 id="booting-from-grub2">Booting from Grub2</h3>
 <h4 id="download-an-ipxe-linux-kernel">Download an iPXE linux kernel</h4>
 <p>Obtain an iPXE generic kernel <a href="http://boot.netboot.xyz/ipxe/generic-ipxe.lkrn">here</a> or <a href="http://ipxe.org/download">compile your own</a> and save it to /boot/generic-ipxe.lkrn.</p>
