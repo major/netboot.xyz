@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/boot-usb/">
+        <link rel="canonical" href="http://netboot.xyz/faq/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>USB - netboot.xyz</title>
+	<title>FAQ - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -66,7 +66,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boot from... <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -82,8 +82,8 @@
                             <a href="../boot-tftp/">TFTP</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">USB</a>
+                        <li >
+                            <a href="../boot-usb/">USB</a>
                         </li>
                     
                     </ul>
@@ -108,8 +108,8 @@
             
             
             
-                <li >
-                    <a href="../faq/">FAQ</a>
+                <li class="active">
+                    <a href="./">FAQ</a>
                 </li>
             
             
@@ -118,12 +118,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../boot-tftp/">
+                    <a rel="next" href="../usage-rackspace/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../usage-digitalocean/">
+                <li class="disabled">
+                    <a rel="prev" >
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -146,71 +146,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#booting-from-a-usb-key">Booting from a USB Key</a></li>
+        <li class="main active"><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
         
-    
-        <li class="main "><a href="#creating-usb-key-on-linux">Creating USB Key on Linux</a></li>
+            <li><a href="#how-does-this-work">How does this work?</a></li>
         
-    
-        <li class="main "><a href="#creating-usb-key-on-os-x">Creating USB Key on OS X</a></li>
+            <li><a href="#will-my-favorite-distribution-work">Will my favorite distribution work?</a></li>
         
-    
-        <li class="main "><a href="#creating-usb-key-on-windows">Creating USB Key on Windows</a></li>
-        
-    
-        <li class="main "><a href="#booting">Booting</a></li>
+            <li><a href="#my-distribution-uses-isos-for-delivery-how-can-i-see-if-they-work">My distribution uses ISOs for delivery, how can I see if they work?</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="booting-from-a-usb-key">Booting from a USB Key</h3>
-<p><em>Warning: Backup your important data before using USB as it will overwrite anything on the USB key.</em></p>
-<p>Download a netboot.xyz USB disk:</p>
-<ul>
-<li><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.usb">dhcp</a> - Automatically detects your networking</li>
-<li><a href="http://boot.netboot.xyz/ipxe/netboot.xyz-static.usb">static</a> - Prompts for manual entry of your networking information</li>
-</ul>
-<h3 id="creating-usb-key-on-linux">Creating USB Key on Linux</h3>
-<p>Insert a USB key in your compute and find the device name. Then use following command:</p>
-<pre><code>cat ipxe.usb &gt; /dev/sdX
+<h3 id="frequently-asked-questions">Frequently Asked Questions</h3>
+<h4 id="how-does-this-work">How does this work?</h4>
+<p>netboot.xyz uses an open source tool called iPXE.  The bootloader used calls to a webserver that hosts that the iPXE source files.  The iPXE source files contain menus and logic that understand how the various Linux installers operate.  When you select an Operating System, netboot.xyz retrieves the images from the project directory when possible or known and trusted performant mirrors.  The location the file is pulled from is always during retrieval.</p>
+<h4 id="will-my-favorite-distribution-work">Will my favorite distribution work?</h4>
+<p>Usually you need three things to boot up an OS, the vmlinuz, the initramfs, and the rootfs.  Distributions that support an installer kernel hosted on a mirror are typically the easier ones to implement.  Distributions that only release as ISOs typically are harder to implement as we have to use memdisk to load it up into memory.  </p>
+<p>From <a href="http://www.syslinux.org/wiki/index.php/MEMDISK">syslinux - memdisk</a>: The majority of Linux based CD images will also fail to work with MEMDISK ISO emulation. Linux distributions require kernel and initrd files to be specified, as soon as these files are loaded the protected mode kernel driver(s) take control and the virtual CD will no longer be accessible. If any other files are required from the CD/DVD they will be missing, resulting in boot error(s). Linux distributions that only require kernel and initrd files function fully via ISO emulation, as no other data needs accessing from the virtual CD/DVD drive once they have been loaded. The boot loader has read all necessary files to memory by using INT 13h, before booting the kernel.</p>
+<p>You can read more about my thoughts and possible solutions <a href="https://www.reversengineered.com/2016/01/07/booting-linux-isos-with-memdisk-and-ipxe/">here</a>.</p>
+<h4 id="my-distribution-uses-isos-for-delivery-how-can-i-see-if-they-work">My distribution uses ISOs for delivery, how can I see if they work?</h4>
+<p>You can do a quick check by loading up netboot.xyz in a virtual environment baremetal.  Make sure you have plenty of RAM as you are loading the ISO into RAM.  Then select the iPXE command line and enter the following;</p>
+<pre><code>kernel http://boot.netboot.xyz/memdisk iso raw
+initrd http://url/to/iso
+boot
 </code></pre>
-<p>or</p>
-<pre><code>dd if=ipxe.usb of=/dev/sdX
-</code></pre>
-<p>where sdX is your usb drive.</p>
-<p>The USB key should be ready to eject once finished.</p>
-<h3 id="creating-usb-key-on-os-x">Creating USB Key on OS X</h3>
-<p><strong>Run:</strong></p>
-<pre><code>diskutil list
-</code></pre>
-<p>to get the current list of devices</p>
-<p><strong><em>Insert the flash media.</em></strong></p>
-<p><strong>Run:</strong></p>
-<pre><code>diskutil list
-</code></pre>
-<p>again and determine the device node assigned to your flash media (e.g. /dev/disk2).</p>
-<p><strong>Run:</strong></p>
-<pre><code>diskutil unmountDisk /dev/diskN
-</code></pre>
-<p>(replace N with the disk number from the last command; in the previous example, N would be 2).</p>
-<p><strong>Execute:</strong></p>
-<pre><code>sudo dd if=netboot.xyz-dhcp.usb of=/dev/rdiskN bs=1m
-</code></pre>
-<ul>
-<li>Using /dev/rdisk instead of /dev/disk may be faster</li>
-<li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M</li>
-<li>If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive</li>
-</ul>
-<p><strong>Run:</strong></p>
-<pre><code>diskutil eject /dev/diskN
-</code></pre>
-<p>and remove your flash media when the command completes.</p>
-<h3 id="creating-usb-key-on-windows">Creating USB Key on Windows</h3>
-<p>Check out <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/">Universal USB Installer</a> to install the ISO file to a USB key.</p>
-<h3 id="booting">Booting</h3>
-<p>Once you've created your key, reboot and set your BIOS to load the USB key first if it's not set for that already. You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.</p></div>
+<p>That should load the ISO and if you make it all the way into the installer, great, your OS may work.  If it fails during initramfs load trying to load the CD device, then it has the issue of not being able to find the ISO in memory.</p></div>
         </div>
 
         <footer class="col-md-12">
