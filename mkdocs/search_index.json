@@ -11,32 +11,32 @@
             "title": "netboot.xyz"
         }, 
         {
-            "location": "/boot_ipxe/", 
+            "location": "/boot-ipxe/", 
             "text": "iPXE\n\n\nNIC with Embedded iPXE\n\n\nIf you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:\n\n\ndhcp\nchain --autofree http://boot.netboot.xyz\n\n\n\nIf you don't have DHCP on your network, you can manually set your network information:\n\n\nset net0/ip \nip\n\nset net0/netmask \nnetmask\n\nset net0/gateway \ngateway\n\nset dns \nnameserver\n\nifopen net0\nchain --autofree http://boot.netboot.xyz", 
             "title": "iPXE"
         }, 
         {
-            "location": "/boot_iso/", 
+            "location": "/boot-iso/", 
             "text": "Booting from ISO\n\n\nBurning a CD/DVD\n\n\nTo create a bootable CD-ROM/DVD, burn the ISO image \nnetboot.xyz-dhcp.iso\n if you have DHCP or \nnetboot.xyz-static.iso\n if you require manual entry (~1MB in size) to a blank CD-ROM/DVD.  Insert the media into the server, set the proper boot order and boot up.\n\n\nVirtual Machine Software\n\n\nYou can also use these ISOs to boot any sort of VM in Citrix XenServer, VMware ESXi, VMware Fusion, VirtualBox. \n\n\nOut of Band Virtual Media\n\n\nThey are great for attaching to remote virtual media of a server like the Dell DRAC or HP iLOs.  Because the iPXE boot disk is so light weight, they are great for starting installations where there might be really low bandwidth.", 
             "title": "ISO"
         }, 
         {
-            "location": "/boot_tftp/", 
+            "location": "/boot-tftp/", 
             "text": "Booting from DHCP and TFTP\n\n\nIf you want to utilize netboot.xyz from your home or office network, it's relatively easy to set up.  It will allow all of your devices on your network to have netboot.xyz available whenever you need it by just changing the boot order on your device, selecting network boot, or manually selecting the device to boot.\n\n\nDHCP Server Setup\n\n\nYou will have to tell your DHCP server to provide a \"next-server\", the address of a TFTP server on your network, and a \"filename\", the \nnetboot.xyz DHCP boot file\n.  When your clients boot up, if they are set to network boot, they'll automatically get a valid DHCP address, pull down the netboot.xyz iPXE bootloader and load up the Operating System menu.  \n\n\nExample:\n\n\nnext-server \"1.2.3.4\"\nfilename \"netboot.xyz-dhcp.kpxe\"\n\n\n\nTFTP Server Setup\n\n\nYou will need to set up a tftp server to host the iPXE files.  There are various types of TFTP servers out there and they all usually work pretty well.  You can also use dnsmasq to host the files as well.\n\n\nIf you use dnsmasq you can add this configuration to /etc/dnsmasq.conf:\n\n\nenable-tftp\ntftp-root=/var/lib/tftp\ndhcp-boot=netboot.xyz-dhcp.kpxe\n\n\n\nRegular and Undionly Boot Files\n\n\nIf you experiencing issues with the regular \nnetboot.xyz-dhcp.kpxe\n bootloader, you can try and use the \nnetboot.xyz-dhcp-undionly.kpxe\n bootloader.  The regular bootloader includes common NIC drivers in the iPXE image, while the undionly loader will piggyback off the NIC boot firmware.", 
             "title": "TFTP"
         }, 
         {
-            "location": "/boot_usb/", 
+            "location": "/boot-usb/", 
             "text": "Booting from a USB Key\n\n\nWarning: Backup your important data before using USB as it will overwrite anything on the USB key.\n\n\nDownload a netboot.xyz USB disk:\n\n\n\n\ndhcp\n - Automatically detects your networking\n\n\nstatic\n - Prompts for manual entry of your networking information\n\n\n\n\nCreating USB Key on Linux\n\n\nInsert a USB key in your compute and find the device name. Then use following command:\n\n\ncat ipxe.usb \n /dev/sdX\n\n\n\nor\n\n\ndd if=ipxe.usb of=/dev/sdX\n\n\n\nwhere sdX is your usb drive.\n\n\nThe USB key should be ready to eject once finished.\n\n\nCreating USB Key on OS X\n\n\nRun:\n\n\ndiskutil list\n\n\n\nto get the current list of devices\n\n\nInsert the flash media.\n\n\nRun:\n\n\ndiskutil list\n\n\n\nagain and determine the device node assigned to your flash media (e.g. /dev/disk2).\n\n\nRun:\n\n\ndiskutil unmountDisk /dev/diskN\n\n\n\n(replace N with the disk number from the last command; in the previous example, N would be 2).\n\n\nExecute:\n\n\nsudo dd if=netboot.xyz-dhcp.usb of=/dev/rdiskN bs=1m\n\n\n\n\n\nUsing /dev/rdisk instead of /dev/disk may be faster\n\n\nIf you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M\n\n\nIf you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive\n\n\n\n\nRun:\n\n\ndiskutil eject /dev/diskN\n\n\n\nand remove your flash media when the command completes.\n\n\nCreating USB Key on Windows\n\n\nCheck out \nUniversal USB Installer\n to install the ISO file to a USB key.\n\n\nBooting\n\n\nOnce you've created your key, reboot and set your BIOS to load the USB key first if it's not set for that already. You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.", 
             "title": "USB"
         }, 
         {
-            "location": "/usage_digitalocean/", 
+            "location": "/usage-digitalocean/", 
             "text": "Digital Ocean\n\n\nDigital Ocean\n at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.\n\n\niPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.\n\n\nTests were done using a \nFedora 23\n instance on \nDigital Ocean\n.\n\n\nBooting from Grub2\n\n\nDownload an iPXE linux kernel\n\n\nObtain an iPXE generic kernel \nhere\n or \ncompile your own\n and save it to /boot/generic-ipxe.lkrn.\n\n\nCreate a netboot.xyz initrd file\n\n\nThe netboot.xyz initrd file contains the script necessary to bring the instance on the network and reach out to netboot.xyz.\n\n\nSave as /boot/netboot.xyz-initrd (replace your networking information where appropriate):\n\n\n#!ipxe\n#/boot/netboot.xyz-initrd\nimgfree\nset net0/ip \ninstance public ip\n\nset net0/netmask \ninstance public netmask\n\nset net0/gateway \ninstance public gateway\n\nset dns \ninstance dns address\n\nifopen net0\nchain --autofree http://boot.netboot.xyz\n\n\n\nAdd a Grub2 custom entry\n\n\nAdd the following entry to /etc/grub.d/40_custom:\n\n\n#/etc/grub.d/40_custom\nmenuentry 'netboot.xyz' {\n    set root='hd0,msdos1'\n    linux16 /boot/generic-ipxe.lkrn\n    initrd16 /boot/netboot.xyz-initrd\n}\n\n\n\nRegenerate your grub config\n\n\nRun grub2-mkconfig right after editing the configuration to add the netboot.xyz entry to your grub menu:\n\n\ngrub2-mkconfig -o /boot/grub2/grub.cfg\n\n\n\nLoad up a console and then reboot from the instance to catch the menu option.  You can also change the default boot to netboot.xyz or increase the timeout if you want to be able to catch it easier.", 
             "title": "Digital Ocean"
         }, 
         {
-            "location": "/usage_rackspace/", 
+            "location": "/usage-rackspace/", 
             "text": "Rackspace\n\n\nSee \nboot.rackspace.com\n for now.  You can chain to netboot.xyz from there:\n\n\nchain --autofree http://boot.netboot.xyz", 
             "title": "Rackspace"
         }
