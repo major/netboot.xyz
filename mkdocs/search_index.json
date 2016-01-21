@@ -7,58 +7,8 @@
         }, 
         {
             "location": "/#netbootxyz", 
-            "text": "", 
+            "text": "Bootloader Downloads  These iPXE disks will automatically load into  boot.netboot.xyz :     Type  DHCP Bootloaders  Static Bootloaders  Description      ISO  netboot.xyz-dhcp.iso  netboot.xyz-static.iso  Used for CD/DVD, Virtual CDs like DRAC/iLO, VMware, Virtual Box    USB  netboot.xyz-dhcp.usb  netboot.xyz-static.usb  Used for creation of USB Keys    Kernel  netboot.xyz-dhcp.lkrn  netboot.xyz-static.lkrn  Used for booting from GRUB/EXTLINUX    DHCP  netboot.xyz-dhcp.kpxe  netboot.xyz-static.kpxe  DHCP boot image file, uses built-in iPXE NIC drivers    DHCP-undionly  netboot.xyz-dhcp-undionly.kpxe  netboot.xyz-static-undionly.kpxe  DHCP boot image file, use if you have NIC issues     The DHCP bootloaders will automatically get a network address if you have DHCP on your network while the static bootloaders will prompt you for network information.    SHA256 checksums are generated during each build of iPXE and are located  here .  You can also view the scripts that are embedded into the images  here .  What is netboot.xyz?  netboot.xyz  is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.   iPXE  is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.  You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.  Getting started  Download the bootloader of your choice from the links above and add it to your favorite virtualization tool to start testing out netboot.xyz.  These are precompiled versions of the latest version of  iPXE  that will chainload you to  http://boot.netboot.xyz .  There are two versions of each, one if you have DHCP on your network, and one if you have to set a static IP before connecting outside of your network.  If you already have iPXE up and running on the network, you can hit netboot.xyz at anytime by typing:  chain --autofree http://boot.netboot.xyz  Operating Systems  What Operating Systems are currently available on netboot.xyz?   Arch Linux  CentOS  CoreOS  Debian  Fedora  FreeBSD  Kali  Mageia  OpenBSD  OpenSUSE  RancherOS  Scientific  TinyCoreLinux  Ubuntu   Utilities   AVG Rescue CD  Clonezilla  DBAN  GParted  HDT  Memtest  Partition Wizard  Pogostick - Offline Windows Password and Registry Editor  Super Grub2 Disk   Source Code  The source code for netboot.xyz is located  here .  Contributing  New version of an OS out?  Found a new OS that works well with iPXE?  Pull requests are welcomed and encouraged and helps me out a ton!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master,  Travis CI  will regenerate new versions of  iPXE from upstream  and deploy the latest changes to netboot.xyz.  Testing New Branches  Under the Utilities menu on netboot.xyz, there's an option for  \"Test netboot.xyz branch\" .  If you've forked the code and have developed a new feature branch, you can use this option to chainload into that branch to test and validate the code.  All you need to do is specify your github user name and the name of your branch or abbreviated hash of the commit.  Feedback  Feel free to open up an  issue  on github or follow us on  twitter .  We're also on  Freenode IRC  in  #netbootxyz .", 
             "title": "netboot.xyz"
-        }, 
-        {
-            "location": "/#bootloader-downloads", 
-            "text": "These iPXE disks will automatically load into  boot.netboot.xyz :     Type  DHCP Bootloaders  Static Bootloaders  Description      ISO  netboot.xyz-dhcp.iso  netboot.xyz-static.iso  Used for CD/DVD, Virtual CDs like DRAC/iLO, VMware, Virtual Box    USB  netboot.xyz-dhcp.usb  netboot.xyz-static.usb  Used for creation of USB Keys    Kernel  netboot.xyz-dhcp.lkrn  netboot.xyz-static.lkrn  Used for booting from GRUB/EXTLINUX    DHCP  netboot.xyz-dhcp.kpxe  netboot.xyz-static.kpxe  DHCP boot image file, uses built-in iPXE NIC drivers    DHCP-undionly  netboot.xyz-dhcp-undionly.kpxe  netboot.xyz-static-undionly.kpxe  DHCP boot image file, use if you have NIC issues     The DHCP bootloaders will automatically get a network address if you have DHCP on your network while the static bootloaders will prompt you for network information.    SHA256 checksums are generated during each build of iPXE and are located  here .  You can also view the scripts that are embedded into the images  here .", 
-            "title": "Bootloader Downloads"
-        }, 
-        {
-            "location": "/#what-is-netbootxyz", 
-            "text": "netboot.xyz  is a way to select various operating system installers or utilities from one place within the BIOS without the need of having to go retrieve the media to run the tool.   iPXE  is used to provide a user friendly menu from within the BIOS that lets you easily choose the OS you want along with any specific types of versions or bootable flags.  You can remote attach the ISO to servers, set it up as a rescue option in Grub, or even set up your home network to boot to it by default so that it's always available.", 
-            "title": "What is netboot.xyz?"
-        }, 
-        {
-            "location": "/#getting-started", 
-            "text": "Download the bootloader of your choice from the links above and add it to your favorite virtualization tool to start testing out netboot.xyz.  These are precompiled versions of the latest version of  iPXE  that will chainload you to  http://boot.netboot.xyz .  There are two versions of each, one if you have DHCP on your network, and one if you have to set a static IP before connecting outside of your network.  If you already have iPXE up and running on the network, you can hit netboot.xyz at anytime by typing:  chain --autofree http://boot.netboot.xyz", 
-            "title": "Getting started"
-        }, 
-        {
-            "location": "/#operating-systems", 
-            "text": "", 
-            "title": "Operating Systems"
-        }, 
-        {
-            "location": "/#what-operating-systems-are-currently-available-on-netbootxyz", 
-            "text": "Arch Linux  CentOS  CoreOS  Debian  Fedora  FreeBSD  Kali  Mageia  OpenBSD  OpenSUSE  RancherOS  Scientific  TinyCoreLinux  Ubuntu", 
-            "title": "What Operating Systems are currently available on netboot.xyz?"
-        }, 
-        {
-            "location": "/#utilities", 
-            "text": "AVG Rescue CD  Clonezilla  DBAN  GParted  HDT  Memtest  Partition Wizard  Pogostick - Offline Windows Password and Registry Editor  Super Grub2 Disk", 
-            "title": "Utilities"
-        }, 
-        {
-            "location": "/#source-code", 
-            "text": "The source code for netboot.xyz is located  here .", 
-            "title": "Source Code"
-        }, 
-        {
-            "location": "/#contributing", 
-            "text": "New version of an OS out?  Found a new OS that works well with iPXE?  Pull requests are welcomed and encouraged and helps me out a ton!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master,  Travis CI  will regenerate new versions of  iPXE from upstream  and deploy the latest changes to netboot.xyz.", 
-            "title": "Contributing"
-        }, 
-        {
-            "location": "/#testing-new-branches", 
-            "text": "Under the Utilities menu on netboot.xyz, there's an option for  \"Test netboot.xyz branch\" .  If you've forked the code and have developed a new feature branch, you can use this option to chainload into that branch to test and validate the code.  All you need to do is specify your github user name and the name of your branch or abbreviated hash of the commit.", 
-            "title": "Testing New Branches"
-        }, 
-        {
-            "location": "/#feedback", 
-            "text": "Feel free to open up an  issue  on github or follow us on  twitter .  We're also on  Freenode IRC  in  #netbootxyz .", 
-            "title": "Feedback"
         }, 
         {
             "location": "/boot-ipxe/", 
@@ -66,39 +16,9 @@
             "title": "iPXE"
         }, 
         {
-            "location": "/boot-ipxe/#ipxe", 
-            "text": "", 
-            "title": "iPXE"
-        }, 
-        {
-            "location": "/boot-ipxe/#nic-with-embedded-ipxe", 
-            "text": "If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:  dhcp\nchain --autofree http://boot.netboot.xyz  If you don't have DHCP on your network, you can manually set your network information:  set net0/ip  ip \nset net0/netmask  netmask \nset net0/gateway  gateway \nset dns  nameserver \nifopen net0\nchain --autofree http://boot.netboot.xyz", 
-            "title": "NIC with Embedded iPXE"
-        }, 
-        {
             "location": "/boot-iso/", 
             "text": "Booting from ISO\n\n\nBurning a CD/DVD\n\n\nTo create a bootable CD-ROM/DVD, burn the ISO image \nnetboot.xyz-dhcp.iso\n if you have DHCP or \nnetboot.xyz-static.iso\n if you require manual entry (~1MB in size) to a blank CD-ROM/DVD.  Insert the media into the server, set the proper boot order and boot up.\n\n\nVirtual Machine Software\n\n\nYou can also use these ISOs to boot any sort of VM in Citrix XenServer, VMware ESXi, VMware Fusion, VirtualBox. \n\n\nOut of Band Virtual Media\n\n\nThey are great for attaching to remote virtual media of a server like the Dell DRAC or HP iLOs.  Because the iPXE boot disk is so light weight, they are great for starting installations where there might be really low bandwidth.", 
             "title": "ISO"
-        }, 
-        {
-            "location": "/boot-iso/#booting-from-iso", 
-            "text": "", 
-            "title": "Booting from ISO"
-        }, 
-        {
-            "location": "/boot-iso/#burning-a-cddvd", 
-            "text": "To create a bootable CD-ROM/DVD, burn the ISO image  netboot.xyz-dhcp.iso  if you have DHCP or  netboot.xyz-static.iso  if you require manual entry (~1MB in size) to a blank CD-ROM/DVD.  Insert the media into the server, set the proper boot order and boot up.", 
-            "title": "Burning a CD/DVD"
-        }, 
-        {
-            "location": "/boot-iso/#virtual-machine-software", 
-            "text": "You can also use these ISOs to boot any sort of VM in Citrix XenServer, VMware ESXi, VMware Fusion, VirtualBox.", 
-            "title": "Virtual Machine Software"
-        }, 
-        {
-            "location": "/boot-iso/#out-of-band-virtual-media", 
-            "text": "They are great for attaching to remote virtual media of a server like the Dell DRAC or HP iLOs.  Because the iPXE boot disk is so light weight, they are great for starting installations where there might be really low bandwidth.", 
-            "title": "Out of Band Virtual Media"
         }, 
         {
             "location": "/boot-tftp/", 
@@ -106,54 +26,9 @@
             "title": "TFTP"
         }, 
         {
-            "location": "/boot-tftp/#booting-from-dhcp-and-tftp", 
-            "text": "If you want to utilize netboot.xyz from your home or office network, it's relatively easy to set up.  It will allow all of your devices on your network to have netboot.xyz available whenever you need it by just changing the boot order on your device, selecting network boot, or manually selecting the device to boot.", 
-            "title": "Booting from DHCP and TFTP"
-        }, 
-        {
-            "location": "/boot-tftp/#dhcp-server-setup", 
-            "text": "You will have to tell your DHCP server to provide a \"next-server\", the address of a TFTP server on your network, and a \"filename\", the  netboot.xyz DHCP boot file .  When your clients boot up, if they are set to network boot, they'll automatically get a valid DHCP address, pull down the netboot.xyz iPXE bootloader and load up the Operating System menu.    Example:  next-server \"1.2.3.4\"\nfilename \"netboot.xyz-dhcp.kpxe\"", 
-            "title": "DHCP Server Setup"
-        }, 
-        {
-            "location": "/boot-tftp/#tftp-server-setup", 
-            "text": "You will need to set up a tftp server to host the iPXE files.  There are various types of TFTP servers out there and they all usually work pretty well.  You can also use dnsmasq to host the files as well.  If you use dnsmasq you can add this configuration to /etc/dnsmasq.conf:  enable-tftp\ntftp-root=/var/lib/tftp\ndhcp-boot=netboot.xyz-dhcp.kpxe", 
-            "title": "TFTP Server Setup"
-        }, 
-        {
-            "location": "/boot-tftp/#regular-and-undionly-boot-files", 
-            "text": "If you experiencing issues with the regular  netboot.xyz-dhcp.kpxe  bootloader, you can try and use the  netboot.xyz-dhcp-undionly.kpxe  bootloader.  The regular bootloader includes common NIC drivers in the iPXE image, while the undionly loader will piggyback off the NIC boot firmware.", 
-            "title": "Regular and Undionly Boot Files"
-        }, 
-        {
             "location": "/boot-usb/", 
             "text": "Booting from a USB Key\n\n\nWarning: Backup your important data before using USB as it will overwrite anything on the USB key.\n\n\nDownload a netboot.xyz USB disk:\n\n\n\n\ndhcp\n - Automatically detects your networking\n\n\nstatic\n - Prompts for manual entry of your networking information\n\n\n\n\nCreating USB Key on Linux\n\n\nInsert a USB key in your compute and find the device name. Then use following command:\n\n\ncat ipxe.usb \n /dev/sdX\n\n\n\nor\n\n\ndd if=ipxe.usb of=/dev/sdX\n\n\n\nwhere sdX is your usb drive.\n\n\nThe USB key should be ready to eject once finished.\n\n\nCreating USB Key on OS X\n\n\nRun:\n\n\ndiskutil list\n\n\n\nto get the current list of devices\n\n\nInsert the flash media.\n\n\nRun:\n\n\ndiskutil list\n\n\n\nagain and determine the device node assigned to your flash media (e.g. /dev/disk2).\n\n\nRun:\n\n\ndiskutil unmountDisk /dev/diskN\n\n\n\n(replace N with the disk number from the last command; in the previous example, N would be 2).\n\n\nExecute:\n\n\nsudo dd if=netboot.xyz-dhcp.usb of=/dev/rdiskN bs=1m\n\n\n\n\n\nUsing /dev/rdisk instead of /dev/disk may be faster\n\n\nIf you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M\n\n\nIf you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive\n\n\n\n\nRun:\n\n\ndiskutil eject /dev/diskN\n\n\n\nand remove your flash media when the command completes.\n\n\nCreating USB Key on Windows\n\n\nCheck out \nUniversal USB Installer\n to install the ISO file to a USB key.\n\n\nBooting\n\n\nOnce you've created your key, reboot and set your BIOS to load the USB key first if it's not set for that already. You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.", 
             "title": "USB"
-        }, 
-        {
-            "location": "/boot-usb/#booting-from-a-usb-key", 
-            "text": "Warning: Backup your important data before using USB as it will overwrite anything on the USB key.  Download a netboot.xyz USB disk:   dhcp  - Automatically detects your networking  static  - Prompts for manual entry of your networking information", 
-            "title": "Booting from a USB Key"
-        }, 
-        {
-            "location": "/boot-usb/#creating-usb-key-on-linux", 
-            "text": "Insert a USB key in your compute and find the device name. Then use following command:  cat ipxe.usb   /dev/sdX  or  dd if=ipxe.usb of=/dev/sdX  where sdX is your usb drive.  The USB key should be ready to eject once finished.", 
-            "title": "Creating USB Key on Linux"
-        }, 
-        {
-            "location": "/boot-usb/#creating-usb-key-on-os-x", 
-            "text": "Run:  diskutil list  to get the current list of devices  Insert the flash media.  Run:  diskutil list  again and determine the device node assigned to your flash media (e.g. /dev/disk2).  Run:  diskutil unmountDisk /dev/diskN  (replace N with the disk number from the last command; in the previous example, N would be 2).  Execute:  sudo dd if=netboot.xyz-dhcp.usb of=/dev/rdiskN bs=1m   Using /dev/rdisk instead of /dev/disk may be faster  If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M  If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive   Run:  diskutil eject /dev/diskN  and remove your flash media when the command completes.", 
-            "title": "Creating USB Key on OS X"
-        }, 
-        {
-            "location": "/boot-usb/#creating-usb-key-on-windows", 
-            "text": "Check out  Universal USB Installer  to install the ISO file to a USB key.", 
-            "title": "Creating USB Key on Windows"
-        }, 
-        {
-            "location": "/boot-usb/#booting", 
-            "text": "Once you've created your key, reboot and set your BIOS to load the USB key first if it's not set for that already. You should see iPXE load up either load up netboot.xyz automatically or prompt you to set your networking information up.", 
-            "title": "Booting"
         }, 
         {
             "location": "/usage-digitalocean/", 
@@ -161,69 +36,14 @@
             "title": "Digital Ocean"
         }, 
         {
-            "location": "/usage-digitalocean/#digital-ocean", 
-            "text": "Digital Ocean  at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.  iPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.  Tests were done using a  Fedora 23  instance on  Digital Ocean .", 
-            "title": "Digital Ocean"
-        }, 
-        {
-            "location": "/usage-digitalocean/#booting-from-grub2", 
-            "text": "", 
-            "title": "Booting from Grub2"
-        }, 
-        {
-            "location": "/usage-digitalocean/#download-an-ipxe-linux-kernel", 
-            "text": "Obtain an iPXE generic kernel  here  or  compile your own  and save it to /boot/generic-ipxe.lkrn.", 
-            "title": "Download an iPXE linux kernel"
-        }, 
-        {
-            "location": "/usage-digitalocean/#create-a-netbootxyz-initrd-file", 
-            "text": "The netboot.xyz initrd file contains the script necessary to bring the instance on the network and reach out to netboot.xyz.  Save as /boot/netboot.xyz-initrd (replace your networking information where appropriate):  #!ipxe\n#/boot/netboot.xyz-initrd\nimgfree\nset net0/ip  instance public ip \nset net0/netmask  instance public netmask \nset net0/gateway  instance public gateway \nset dns  instance dns address \nifopen net0\nchain --autofree http://boot.netboot.xyz", 
-            "title": "Create a netboot.xyz initrd file"
-        }, 
-        {
-            "location": "/usage-digitalocean/#add-a-grub2-custom-entry", 
-            "text": "Add the following entry to /etc/grub.d/40_custom:  #/etc/grub.d/40_custom\nmenuentry 'netboot.xyz' {\n    set root='hd0,msdos1'\n    linux16 /boot/generic-ipxe.lkrn\n    initrd16 /boot/netboot.xyz-initrd\n}", 
-            "title": "Add a Grub2 custom entry"
-        }, 
-        {
-            "location": "/usage-digitalocean/#regenerate-your-grub-config", 
-            "text": "Run grub2-mkconfig right after editing the configuration to add the netboot.xyz entry to your grub menu:  grub2-mkconfig -o /boot/grub2/grub.cfg  Load up a console and then reboot from the instance to catch the menu option.  You can also change the default boot to netboot.xyz or increase the timeout if you want to be able to catch it easier.", 
-            "title": "Regenerate your grub config"
-        }, 
-        {
             "location": "/usage-rackspace/", 
             "text": "Rackspace\n\n\nSee \nboot.rackspace.com\n for now.  You can chain to netboot.xyz from there:\n\n\nchain --autofree http://boot.netboot.xyz", 
-            "title": "Rackspace"
-        }, 
-        {
-            "location": "/usage-rackspace/#rackspace", 
-            "text": "See  boot.rackspace.com  for now.  You can chain to netboot.xyz from there:  chain --autofree http://boot.netboot.xyz", 
             "title": "Rackspace"
         }, 
         {
             "location": "/faq/", 
             "text": "Frequently Asked Questions\n\n\nHow does this work?\n\n\nnetboot.xyz uses an open source tool called iPXE.  The bootloader used calls to a webserver that hosts that the iPXE source files.  The iPXE source files contain menus and logic that understand how the various Linux installers operate.  When you select an Operating System, netboot.xyz retrieves the images from the project directory when possible or known and trusted performant mirrors.  The location the file is pulled from is always displayed during retrieval.\n\n\nWill my favorite distribution work?\n\n\nUsually you need three things to boot up an OS, the vmlinuz, the initramfs, and the rootfs.  Distributions that support an installer kernel hosted on a mirror are typically the easier ones to implement.  Distributions that only release as ISOs typically are harder to implement as we have to use memdisk to load it up into memory.  \n\n\nFrom \nsyslinux - memdisk\n: The majority of Linux based CD images will also fail to work with MEMDISK ISO emulation. Linux distributions require kernel and initrd files to be specified, as soon as these files are loaded the protected mode kernel driver(s) take control and the virtual CD will no longer be accessible. If any other files are required from the CD/DVD they will be missing, resulting in boot error(s). Linux distributions that only require kernel and initrd files function fully via ISO emulation, as no other data needs accessing from the virtual CD/DVD drive once they have been loaded. The boot loader has read all necessary files to memory by using INT 13h, before booting the kernel.\n\n\nYou can read more about my thoughts and possible solutions \nhere\n.\n\n\nMy distribution uses ISOs for delivery, how can I see if they work?\n\n\nYou can do a quick check by loading up netboot.xyz in a virtual environment baremetal.  Make sure you have plenty of RAM as you are loading the ISO into RAM.  Then select the iPXE command line and enter the following;\n\n\nkernel http://boot.netboot.xyz/memdisk iso raw\ninitrd http://url/to/iso\nboot\n\n\n\nThat should load the ISO and if you make it all the way into the installer, great, your OS may work.  If it fails during initramfs load trying to load the CD device, then it has the issue of not being able to find the ISO in memory.", 
             "title": "FAQ"
-        }, 
-        {
-            "location": "/faq/#frequently-asked-questions", 
-            "text": "", 
-            "title": "Frequently Asked Questions"
-        }, 
-        {
-            "location": "/faq/#how-does-this-work", 
-            "text": "netboot.xyz uses an open source tool called iPXE.  The bootloader used calls to a webserver that hosts that the iPXE source files.  The iPXE source files contain menus and logic that understand how the various Linux installers operate.  When you select an Operating System, netboot.xyz retrieves the images from the project directory when possible or known and trusted performant mirrors.  The location the file is pulled from is always displayed during retrieval.", 
-            "title": "How does this work?"
-        }, 
-        {
-            "location": "/faq/#will-my-favorite-distribution-work", 
-            "text": "Usually you need three things to boot up an OS, the vmlinuz, the initramfs, and the rootfs.  Distributions that support an installer kernel hosted on a mirror are typically the easier ones to implement.  Distributions that only release as ISOs typically are harder to implement as we have to use memdisk to load it up into memory.    From  syslinux - memdisk : The majority of Linux based CD images will also fail to work with MEMDISK ISO emulation. Linux distributions require kernel and initrd files to be specified, as soon as these files are loaded the protected mode kernel driver(s) take control and the virtual CD will no longer be accessible. If any other files are required from the CD/DVD they will be missing, resulting in boot error(s). Linux distributions that only require kernel and initrd files function fully via ISO emulation, as no other data needs accessing from the virtual CD/DVD drive once they have been loaded. The boot loader has read all necessary files to memory by using INT 13h, before booting the kernel.  You can read more about my thoughts and possible solutions  here .", 
-            "title": "Will my favorite distribution work?"
-        }, 
-        {
-            "location": "/faq/#my-distribution-uses-isos-for-delivery-how-can-i-see-if-they-work", 
-            "text": "You can do a quick check by loading up netboot.xyz in a virtual environment baremetal.  Make sure you have plenty of RAM as you are loading the ISO into RAM.  Then select the iPXE command line and enter the following;  kernel http://boot.netboot.xyz/memdisk iso raw\ninitrd http://url/to/iso\nboot  That should load the ISO and if you make it all the way into the installer, great, your OS may work.  If it fails during initramfs load trying to load the CD device, then it has the issue of not being able to find the ISO in memory.", 
-            "title": "My distribution uses ISOs for delivery, how can I see if they work?"
         }
     ]
 }
