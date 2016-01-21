@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/usage-digitalocean/">
+        <link rel="canonical" href="http://netboot.xyz/boot_ipxe/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Digital Ocean - netboot.xyz</title>
+	<title>iPXE - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -66,24 +66,24 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boot from... <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="../boot-ipxe/">iPXE</a>
+                        <li class="active">
+                            <a href="./">iPXE</a>
                         </li>
                     
                         <li >
-                            <a href="../boot-iso/">ISO</a>
+                            <a href="../boot_iso/">ISO</a>
                         </li>
                     
                         <li >
-                            <a href="../boot-tftp/">TFTP</a>
+                            <a href="../boot_tftp/">TFTP</a>
                         </li>
                     
                         <li >
-                            <a href="../boot-usb/">USB</a>
+                            <a href="../boot_usb/">USB</a>
                         </li>
                     
                     </ul>
@@ -91,25 +91,19 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Provider Usage <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Digital Ocean</a>
+                        <li >
+                            <a href="../usage_digitalocean/">Digital Ocean</a>
                         </li>
                     
                         <li >
-                            <a href="../usage-rackspace/">Rackspace</a>
+                            <a href="../usage_rackspace/">Rackspace</a>
                         </li>
                     
                     </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../faq/">FAQ</a>
                 </li>
             
             
@@ -118,22 +112,13 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../boot-usb/">
+                    <a rel="next" href="..">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../usage-rackspace/">
+                    <a rel="prev" href="../boot_iso/">
                         Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="https://github.com/antonym/netboot.xyz">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
                     </a>
                 </li>
                 
@@ -146,59 +131,38 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#digital-ocean">Digital Ocean</a></li>
+        <li class="main active"><a href="#ipxe">iPXE</a></li>
         
-    
-        <li class="main "><a href="#booting-from-grub2">Booting from Grub2</a></li>
-        
-            <li><a href="#download-an-ipxe-linux-kernel">Download an iPXE linux kernel</a></li>
-        
-            <li><a href="#create-a-netbootxyz-initrd-file">Create a netboot.xyz initrd file</a></li>
-        
-            <li><a href="#add-a-grub2-custom-entry">Add a Grub2 custom entry</a></li>
-        
-            <li><a href="#regenerate-your-grub-config">Regenerate your grub config</a></li>
+            <li><a href="#nic-with-embedded-ipxe">NIC with Embedded iPXE</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="digital-ocean">Digital Ocean</h3>
-<p><a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a> at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.</p>
-<p>iPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.</p>
-<p>Tests were done using a <a href="https://getfedora.org">Fedora 23</a> instance on <a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a>.</p>
-<h3 id="booting-from-grub2">Booting from Grub2</h3>
-<h4 id="download-an-ipxe-linux-kernel">Download an iPXE linux kernel</h4>
-<p>Obtain an iPXE generic kernel <a href="http://boot.netboot.xyz/ipxe/generic-ipxe.lkrn">here</a> or <a href="http://ipxe.org/download">compile your own</a> and save it to /boot/generic-ipxe.lkrn.</p>
-<h4 id="create-a-netbootxyz-initrd-file">Create a netboot.xyz initrd file</h4>
-<p>The netboot.xyz initrd file contains the script necessary to bring the instance on the network and reach out to netboot.xyz.</p>
-<p>Save as /boot/netboot.xyz-initrd (replace your networking information where appropriate):</p>
-<pre><code>#!ipxe
-#/boot/netboot.xyz-initrd
-imgfree
-set net0/ip &lt;instance public ip&gt;
-set net0/netmask &lt;instance public netmask&gt;
-set net0/gateway &lt;instance public gateway&gt;
-set dns &lt;instance dns address&gt;
-ifopen net0
+<h3 id="ipxe">iPXE</h3>
+<h4 id="nic-with-embedded-ipxe">NIC with Embedded iPXE</h4>
+<p>If you've already compiled your own iPXE, you can load up the netboot.xyz menu easily by entering CTRL-B when prompted setting DHCP and then chainloading iPXE:</p>
+<pre><code>dhcp
 chain --autofree http://boot.netboot.xyz
 </code></pre>
-<h4 id="add-a-grub2-custom-entry">Add a Grub2 custom entry</h4>
-<p>Add the following entry to /etc/grub.d/40_custom:</p>
-<pre><code>#/etc/grub.d/40_custom
-menuentry 'netboot.xyz' {
-    set root='hd0,msdos1'
-    linux16 /boot/generic-ipxe.lkrn
-    initrd16 /boot/netboot.xyz-initrd
-}
-</code></pre>
-<h4 id="regenerate-your-grub-config">Regenerate your grub config</h4>
-<p>Run grub2-mkconfig right after editing the configuration to add the netboot.xyz entry to your grub menu:</p>
-<pre><code>grub2-mkconfig -o /boot/grub2/grub.cfg
-</code></pre>
-<p>Load up a console and then reboot from the instance to catch the menu option.  You can also change the default boot to netboot.xyz or increase the timeout if you want to be able to catch it easier.</p></div>
+<p>If you don't have DHCP on your network, you can manually set your network information:</p>
+<pre><code>set net0/ip &lt;ip&gt;
+set net0/netmask &lt;netmask&gt;
+set net0/gateway &lt;gateway&gt;
+set dns &lt;nameserver&gt;
+ifopen net0
+chain --autofree http://boot.netboot.xyz
+</code></pre></div>
         </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <center>© 2016 Antony Messerli</center>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
 
         <script src="../js/jquery-1.10.2.min.js"></script>
         <script src="../js/bootstrap-3.0.3.min.js"></script>
