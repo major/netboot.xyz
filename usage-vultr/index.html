@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="netboot.xyz">
-        <link rel="canonical" href="http://netboot.xyz/usage-digitalocean/">
+        <link rel="canonical" href="http://netboot.xyz/usage-vultr/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Digital Ocean - netboot.xyz</title>
+	<title>Vultr - netboot.xyz</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -95,16 +95,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Provider Usage <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Digital Ocean</a>
+                        <li >
+                            <a href="../usage-digitalocean/">Digital Ocean</a>
                         </li>
                     
                         <li >
                             <a href="../usage-rackspace/">Rackspace</a>
                         </li>
                     
-                        <li >
-                            <a href="../usage-vultr/">Vultr</a>
+                        <li class="active">
+                            <a href="./">Vultr</a>
                         </li>
                     
                     </ul>
@@ -122,12 +122,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../boot-usb/">
+                    <a rel="next" href="../usage-rackspace/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../usage-rackspace/">
+                    <a rel="prev" href="../faq/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -150,58 +150,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#digital-ocean">Digital Ocean</a></li>
+        <li class="main active"><a href="#vultr">Vultr</a></li>
         
     
-        <li class="main "><a href="#booting-from-grub2">Booting from Grub2</a></li>
+        <li class="main "><a href="#boot-from-iso">Boot from ISO</a></li>
         
-            <li><a href="#download-an-ipxe-linux-kernel">Download an iPXE linux kernel</a></li>
-        
-            <li><a href="#create-a-netbootxyz-initrd-file">Create a netboot.xyz initrd file</a></li>
-        
-            <li><a href="#add-a-grub2-custom-entry">Add a Grub2 custom entry</a></li>
-        
-            <li><a href="#regenerate-your-grub-config">Regenerate your grub config</a></li>
+    
+        <li class="main "><a href="#boot-from-ipxe-chain-url">Boot from iPXE Chain URL</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h3 id="digital-ocean">Digital Ocean</h3>
-<p><a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a> at one point had iPXE support loaded within their SeaBIOS but has since removed it.  In order to get around this, we'll have to rely on the Grub bootloader instead.</p>
-<p>iPXE generates linux bootable kernels so that you can boot iPXE directly from Grub.  It then treats the initrd as an embedded script which contains your networking and details to load up netboot.xyz.</p>
-<p>Tests were done using a <a href="https://getfedora.org">Fedora 23</a> instance on <a href="https://m.do.co/c/ab4e8f17ba0d">Digital Ocean</a>.</p>
-<h3 id="booting-from-grub2">Booting from Grub2</h3>
-<h4 id="download-an-ipxe-linux-kernel">Download an iPXE linux kernel</h4>
-<p>Obtain an iPXE generic kernel <a href="http://boot.netboot.xyz/ipxe/generic-ipxe.lkrn">here</a> or <a href="http://ipxe.org/download">compile your own</a> and save it to /boot/generic-ipxe.lkrn.</p>
-<h4 id="create-a-netbootxyz-initrd-file">Create a netboot.xyz initrd file</h4>
-<p>The netboot.xyz initrd file contains the script necessary to bring the instance on the network and reach out to netboot.xyz.</p>
-<p>Save as /boot/netboot.xyz-initrd (replace your networking information where appropriate):</p>
-<pre><code>#!ipxe
-#/boot/netboot.xyz-initrd
-imgfree
-set net0/ip &lt;instance public ip&gt;
-set net0/netmask &lt;instance public netmask&gt;
-set net0/gateway &lt;instance public gateway&gt;
-set dns &lt;instance dns address&gt;
-ifopen net0
-chain --autofree http://boot.netboot.xyz
+<h3 id="vultr">Vultr</h3>
+<p><a href="http://www.vultr.com/?ref=6870843">Vultr</a> has some great support for using netboot.xyz right out of the box.  </p>
+<h3 id="boot-from-iso">Boot from ISO</h3>
+<p>Once you've logged into the console, select ISOs.  In the remote URLs box, enter in the URL of a netboot.xyz DHCP ISO and press upload:</p>
+<pre><code>https://boot.netboot.xyz/ipxe/netboot.xyz-dhcp.iso
 </code></pre>
-<h4 id="add-a-grub2-custom-entry">Add a Grub2 custom entry</h4>
-<p>Add the following entry to /etc/grub.d/40_custom:</p>
-<pre><code>#/etc/grub.d/40_custom
-menuentry 'netboot.xyz' {
-    set root='hd0,msdos1'
-    linux16 /boot/generic-ipxe.lkrn
-    initrd16 /boot/netboot.xyz-initrd
-}
+<p>Go back to the main console screen and press "Deploy New Instance".  </p>
+<p>Under Operating Systems, select <em>Custom</em>.  Select the ISO you just uploaded and <em>Place Order</em>.  In a few minutes the instance will have booted.  You will then want to go the main console and select <em>Manage</em> next to the instance you just launched.  Under Server Actions, select <em>View Console</em>.  At this point you should be in the netboot.xyz menu.  </p>
+<p>You can then choose your option and install the OS of your choice.  Once you've completed installation or when you are done with netboot.xyz, select Custom ISO from the Server Manager page and click <em>Remove ISO</em>.  That will remove the ISO and reboot the instance.</p>
+<h3 id="boot-from-ipxe-chain-url">Boot from iPXE Chain URL</h3>
+<p>At the main console screen and press <em>Deploy New Instance</em>.  Under Operating Systems, select <em>Custom</em>.  Under the Virtual ISO section, select iPXE.  Set the chain URL to:</p>
+<pre><code>https://boot.netboot.xyz
 </code></pre>
-<h4 id="regenerate-your-grub-config">Regenerate your grub config</h4>
-<p>Run grub2-mkconfig right after editing the configuration to add the netboot.xyz entry to your grub menu:</p>
-<pre><code>grub2-mkconfig -o /boot/grub2/grub.cfg
-</code></pre>
-<p>Load up a console and then reboot from the instance to catch the menu option.  You can also change the default boot to netboot.xyz or increase the timeout if you want to be able to catch it easier.</p></div>
+<p>and <em>Place Order</em>.  In a few minutes the instance will have booted.  You will then want to go the main managemnt console and select <em>Manage</em> next to the instance you just launched.  Under Server Actions, select <em>View Console</em>.  You should at this point be in the netboot.xyz menu.  You can then choose your option and install the OS of your choice.  Once you've completed installation or when you are done with netboot.xyz, you should be able to reboot into your OS.</p></div>
         </div>
 
         <footer class="col-md-12">
